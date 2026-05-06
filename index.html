@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AITAN! — Liikumine tegutsevatele meestele</title>
+<meta name="description" content="Aitan! on liikumine, mis defineerib mehelikkust läbi tegutsemise. Aitan iseennast, oma peret, teist meest, nõrgemat ja ühiskonda.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f5efe6;
+    --bg-alt: #ebe3d5;
+    --ink: #1a1f2e;
+    --ink-soft: #2a2f3a;
+    --paper: #faf6f0;
+    --accent: #c9572c;
+    --accent-dark: #a8431f;
+    --gold: #b8924a;
+    --line: rgba(26,31,46,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display {
+    font-family: 'Anton', 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.92;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 18px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    background: rgba(245, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    display: flex; align-items: baseline; gap: 2px;
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo .bang { color: var(--accent); }
+  nav ul { display: flex; list-style: none; gap: 32px; }
+  nav ul a {
+    color: var(--ink); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper);
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    nav ul { display: none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 140px 40px 80px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(201,87,44,0.08), transparent),
+      var(--bg);
+    overflow: hidden;
+  }
+  .hero-grid {
+    max-width: 1400px; margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 32px; height: 2px; background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(80px, 16vw, 240px);
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero h1 .bang { color: var(--accent); display: inline-block; }
+  .hero-sub {
+    font-size: clamp(18px, 1.6vw, 22px);
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 700; }
+  .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    padding: 16px 32px; border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: all .2s; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary { background: var(--accent); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border: 2px solid var(--ink);
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+  /* Hero mark */
+  .hero-mark {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 480px;
+    margin-left: auto;
+  }
+  .hero-mark svg {
+    width: 100%; height: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-mark { max-width: 320px; margin: 0 auto; }
+  }
+
+  /* ============ MANIFEST INTRO ============ */
+  .intro {
+    padding: 140px 40px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+  }
+  .intro-inner {
+    max-width: 980px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::before {
+    content: ''; width: 40px; height: 1px; background: var(--accent);
+  }
+  .intro h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5.5vw, 76px);
+    line-height: 1.05;
+    margin-bottom: 48px;
+    text-transform: uppercase;
+  }
+  .intro h2 em {
+    color: var(--accent); font-style: normal;
+  }
+  .intro p {
+    font-size: clamp(18px, 1.4vw, 22px);
+    line-height: 1.7;
+    color: rgba(250, 246, 240, 0.85);
+    margin-bottom: 24px;
+  }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro p strong { color: var(--paper); font-weight: 700; }
+
+  /* ============ VALUES ============ */
+  .values {
+    padding: 140px 40px;
+    background: var(--bg);
+  }
+  .values-header {
+    max-width: 1400px; margin: 0 auto 80px;
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px;
+    align-items: end;
+  }
+  .values-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .values-header p {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 520px;
+  }
+  @media (max-width: 800px) {
+    .values-header { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .values-grid {
+    max-width: 1400px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .value {
+    background: var(--bg);
+    padding: 48px 40px;
+    transition: background .3s;
+    position: relative;
+    cursor: default;
+  }
+  .value:hover { background: var(--bg-alt); }
+  .value-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+  }
+  .value-icon {
+    width: 56px; height: 56px;
+    margin-bottom: 28px;
+    color: var(--accent);
+  }
+  .value h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .value p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ============ QUOTE ============ */
+  .quote {
+    padding: 140px 40px;
+    background: var(--accent);
+    color: var(--paper);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Anton', serif;
+    font-size: 480px;
+    color: rgba(250,246,240,0.08);
+    top: -80px; left: 40px;
+    line-height: 1;
+  }
+  .quote-inner {
+    max-width: 1000px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .quote blockquote {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 3.6vw, 52px);
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+  .quote blockquote em {
+    font-style: normal;
+    border-bottom: 4px solid var(--paper);
+    padding-bottom: 4px;
+  }
+
+  /* ============ HOW ============ */
+  .how {
+    padding: 140px 40px;
+    background: var(--paper);
+  }
+  .how-inner {
+    max-width: 1400px; margin: 0 auto;
+  }
+  .how-header { text-align: center; margin-bottom: 80px; }
+  .how-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .how-header p { font-size: 18px; color: var(--ink-soft); }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    counter-reset: step;
+  }
+  .step {
+    counter-increment: step;
+    padding: 48px 32px 40px;
+    border-top: 4px solid var(--ink);
+    position: relative;
+  }
+  .step::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: 'Anton', sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--bg-alt);
+    position: absolute;
+    right: 24px; top: 32px;
+    z-index: 0;
+  }
+  .step h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 44px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative; z-index: 2;
+  }
+  .step p {
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    position: relative; z-index: 2;
+  }
+  @media (max-width: 800px) {
+    .how-steps { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ============ CTA ============ */
+  .cta {
+    padding: 160px 40px;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+  .cta h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(60px, 9vw, 140px);
+    line-height: 0.95;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+  .cta h2 .bang { color: var(--accent); }
+  .cta p {
+    font-size: clamp(18px, 1.4vw, 22px);
+    color: rgba(250,246,240,0.8);
+    margin-bottom: 48px;
+    max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+  .pledge-form {
+    display: flex; gap: 12px; max-width: 540px; margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .pledge-form input {
+    flex: 1; min-width: 240px;
+    padding: 18px 24px;
+    border: 2px solid rgba(250,246,240,0.2);
+    background: rgba(250,246,240,0.05);
+    color: var(--paper);
+    border-radius: 999px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .pledge-form input::placeholder { color: rgba(250,246,240,0.5); }
+  .pledge-form input:focus { border-color: var(--accent); }
+  .pledge-form button {
+    padding: 18px 32px;
+    background: var(--accent);
+    color: var(--paper);
+    border: none; border-radius: 999px;
+    font-size: 14px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background .2s;
+    font-family: inherit;
+  }
+  .pledge-form button:hover { background: var(--accent-dark); }
+  .pledge-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(250,246,240,0.5);
+  }
+
+  /* ============ STORIES ============ */
+  .stories {
+    padding: 140px 40px;
+    background: var(--bg-alt);
+    position: relative;
+  }
+  .stories-inner { max-width: 1400px; margin: 0 auto; }
+  .stories-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 80px;
+  }
+  .stories-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .stories-header p {
+    font-size: 18px; color: var(--ink-soft);
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  .story {
+    background: var(--paper);
+    padding: 40px 36px;
+    position: relative;
+    transition: transform .3s ease, box-shadow .3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .story:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -20px rgba(26,31,46,0.18);
+  }
+  .story.span-7 { grid-column: span 7; }
+  .story.span-5 { grid-column: span 5; }
+  .story.span-6 { grid-column: span 6; }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .story.dark {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .story.dark .story-meta-name,
+  .story.dark .story-quote { color: var(--paper); }
+  .story.dark .story-meta-role,
+  .story.dark .story-text { color: rgba(250,246,240,0.75); }
+  .story.dark .story-avatar {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  .story.accent {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  .story.accent .story-meta-name,
+  .story.accent .story-quote { color: var(--paper); }
+  .story.accent .story-meta-role,
+  .story.accent .story-text { color: rgba(250,246,240,0.85); }
+  .story.accent .story-avatar {
+    background: var(--paper);
+    color: var(--accent);
+  }
+  .story.accent .story-marker { background: var(--paper); color: var(--accent); }
+
+  .story-marker {
+    align-self: flex-start;
+    background: var(--accent);
+    color: var(--paper);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .story-quote {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(22px, 2vw, 30px);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+  .story-quote::before {
+    content: '"';
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  .story-quote::after {
+    content: '"';
+    color: var(--accent);
+    margin-left: 4px;
+  }
+  .story.accent .story-quote::before,
+  .story.accent .story-quote::after { color: var(--gold); }
+  .story-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .story-meta {
+    display: flex; align-items: center; gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    margin-top: auto;
+  }
+  .story.dark .story-meta,
+  .story.accent .story-meta { border-color: rgba(250,246,240,0.2); }
+  .story-avatar {
+    width: 52px; height: 52px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .story-meta-info { display: flex; flex-direction: column; line-height: 1.3; }
+  .story-meta-name {
+    font-weight: 700; font-size: 15px; color: var(--ink);
+  }
+  .story-meta-role {
+    font-size: 13px; color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .story-stat {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(60px, 7vw, 110px);
+    line-height: 0.9;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .story.stat-card {
+    background: var(--paper);
+    text-align: left;
+    justify-content: center;
+  }
+  .story-stat-label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 240px;
+  }
+
+  @media (max-width: 1000px) {
+    .stories-grid { grid-template-columns: 1fr; }
+    .story.span-7, .story.span-5,
+    .story.span-6, .story.span-4,
+    .story.span-8 { grid-column: span 1; }
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: rgba(250,246,240,0.7);
+    padding: 60px 40px 40px;
+  }
+  .footer-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  .footer-brand .logo { color: var(--paper); margin-bottom: 16px; }
+  .footer-brand p { font-size: 14px; max-width: 320px; line-height: 1.6; }
+  footer h5 {
+    color: var(--paper); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    margin-bottom: 20px;
+  }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 10px; }
+  footer ul a {
+    color: rgba(250,246,240,0.7); text-decoration: none;
+    font-size: 14px; transition: color .2s;
+  }
+  footer ul a:hover { color: var(--accent); }
+  .footer-bottom {
+    max-width: 1400px; margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid rgba(250,246,240,0.12);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px;
+    flex-wrap: wrap; gap: 16px;
+  }
+  @media (max-width: 800px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ============ ANIMATIONS ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">AITAN<span class="bang">!</span></a>
+  <ul>
+    <li><a href="#manifest">Manifest</a></li>
+    <li><a href="#vaartused">Väärtused</a></li>
+    <li><a href="#kuidas">Kuidas</a></li>
+    <li><a href="#lood">Lood</a></li>
+  </ul>
+  <a href="#liitu" class="nav-cta">Liitu</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Liikumine tegutsevatele meestele</div>
+      <h1 class="display">AITAN<span class="bang">!</span></h1>
+      <p class="hero-sub">
+        Me ei defineeri end <strong>vastandudes</strong>, vaid <strong>panustades</strong>.
+        Meie jõud ei seisne domineerimises, vaid toetamises.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#liitu" class="btn btn-primary">Anna oma sõna →</a>
+        <a href="#manifest" class="btn btn-secondary">Loe manifesti</a>
+      </div>
+    </div>
+    <div class="hero-mark">
+      <!-- Logomark: stiliseeritud "A" tõstetud käena, hüüumärk -->
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#c9572c"/>
+            <stop offset="100%" stop-color="#a8431f"/>
+          </linearGradient>
+        </defs>
+        <!-- Ring -->
+        <circle cx="200" cy="200" r="180" fill="none" stroke="#1a1f2e" stroke-width="3"/>
+        <!-- A-täht / käsi üles -->
+        <path d="M 110 320 L 200 80 L 290 320 M 145 240 L 255 240"
+              fill="none" stroke="#1a1f2e" stroke-width="22"
+              stroke-linecap="square" stroke-linejoin="miter"/>
+        <!-- Hüüumärk - aktsendiks -->
+        <rect x="320" y="100" width="22" height="140" fill="url(#grad)"/>
+        <circle cx="331" cy="280" r="14" fill="url(#grad)"/>
+        <!-- Detail: tõstetud käe joon -->
+        <line x1="60" y1="340" x2="340" y2="340" stroke="#1a1f2e" stroke-width="3"/>
+        <text x="200" y="375" text-anchor="middle"
+              font-family="Anton, sans-serif" font-size="22" fill="#1a1f2e"
+              letter-spacing="6">EST · 2026</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFEST ============ -->
+<section id="manifest" class="intro">
+  <div class="intro-inner">
+    <div class="section-label">Manifest</div>
+    <h2 class="reveal">
+      Me elame ajal, mil räägitakse palju sellest, <em>mida mees ei tohi olla.</em>
+    </h2>
+    <p class="reveal">
+      Liikumine <strong>"Aitan!"</strong> sündis vajadusest defineerida, mida mees
+      <strong>saab</strong> ja <strong>tahab</strong> olla.
+    </p>
+    <p class="reveal">
+      Me ei defineeri end vastandudes, vaid panustades. Meie jõud ei seisne
+      domineerimises, vaid toetamises. Sõna "aitan" on lühike, konkreetne ja
+      suunatud väljapoole. See ei küsi luba ega oota kiitust.
+      <strong>See on valik võtta vastutus.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section id="vaartused" class="values">
+  <div class="values-header">
+    <h2 class="reveal">Meie väärtused<br>ja lubadused</h2>
+    <p class="reveal">
+      Viis suunda, kuhu suuname oma tegutsemist. Mitte loosung — vaid päeva
+      lõpus küsimus, millele vastame iseendale ausalt.
+    </p>
+  </div>
+
+  <div class="values-grid">
+
+    <article class="value reveal">
+      <div class="value-num">01 / SEES</div>
+      <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="24" r="18"/>
+        <path d="M24 14v20 M14 24h20"/>
+      </svg>
+      <h3>Aitan iseennast</h3>
+      <p>
+        Saan aidata teisi alles siis, kui olen ise terve — füüsiliselt ja vaimselt.
+        Julgen otsida abi, tegelen oma siseilmaga ja ei karda olla haavatav,
+        sest see on tõelise julguse alus.
+      </p>
+    </article>
+
+    <article class="value reveal">
+      <div class="value-num">02 / KODU</div>
+      <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 22 L24 8 L40 22 V40 H8 Z"/>
+        <path d="M20 40 V28 H28 V40"/>
+      </svg>
+      <h3>Aitan oma peret</h3>
+      <p>
+        Mees on kohal — mitte ainult füüsiliselt, vaid emotsionaalselt.
+        Olen toetav partner, eeskujuks olev isa ja ustav poeg.
+        Minu kodus valitseb turvatunne, mitte hirm.
+      </p>
+    </article>
+
+    <article class="value reveal">
+      <div class="value-num">03 / VENNAD</div>
+      <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="18" r="6"/>
+        <circle cx="32" cy="18" r="6"/>
+        <path d="M6 40 c0-6 4-10 10-10 s10 4 10 10"/>
+        <path d="M22 40 c0-6 4-10 10-10 s10 4 10 10"/>
+      </svg>
+      <h3>Aitan teist meest</h3>
+      <p>
+        Lõpetame üksinduse ja konkurentsi seal, kus peaks olema vendlus.
+        Kui näen sõpra murdumas, ulatan käe. Räägime asjadest nii, nagu need on —
+        ilma filtrita ja häbitundeta.
+      </p>
+    </article>
+
+    <article class="value reveal">
+      <div class="value-num">04 / KILP</div>
+      <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 6 L40 12 V24 c0 10-7 16-16 18 c-9-2-16-8-16-18 V12 Z"/>
+        <path d="M18 24 l4 4 l8-8"/>
+      </svg>
+      <h3>Aitan nõrgemat</h3>
+      <p>
+        Tõeline mehelikkus on kaitsemehhanism neile, kes seda vajavad.
+        Olgu see sekkumine ebaõigluse korral tänaval või abi pakkumine naabrile —
+        me ei kõnni mööda.
+      </p>
+    </article>
+
+    <article class="value reveal">
+      <div class="value-num">05 / ÜHISKOND</div>
+      <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 40 V20 L24 8 L42 20 V40"/>
+        <path d="M14 40 V28 H22 V40"/>
+        <path d="M26 40 V28 H34 V40"/>
+      </svg>
+      <h3>Aitan ühiskonda</h3>
+      <p>
+        Oleme ehitajad, mitte lammutajad. Panustame vabatahtlikuna, hoiame
+        oma kogukonda ja loome väärtust, mis jääb kestma ka pärast meid.
+      </p>
+    </article>
+
+    <article class="value reveal" style="background: var(--ink); color: var(--paper);">
+      <div class="value-num" style="color: var(--gold);">JOIN / 00</div>
+      <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="#c9572c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 24 h32 M24 8 v32 M14 14 l20 20 M34 14 l-20 20"/>
+      </svg>
+      <h3 style="color: var(--paper);">Sinu samm</h3>
+      <p style="color: rgba(250,246,240,0.7);">
+        Sa ei pea olema kangelane. Pead ainult ütlema "aitan" — ja seda mõtlema.
+        <a href="#liitu" style="color: var(--accent); text-decoration: none; font-weight: 600;">Anna oma sõna →</a>
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote">
+  <div class="quote-inner">
+    <blockquote>
+      Maailm muutub paremaks siis, kui mehed hakkavad
+      <em>tegutsema</em> nende nimel, kes on nende ümber.
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section id="kuidas" class="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-label" style="justify-content: center; color: var(--accent);">
+        <span style="background: linear-gradient(90deg, transparent, var(--accent), transparent); width: 80px; height: 1px;"></span>
+        Kuidas me liigume
+      </div>
+      <h2>Kolm sammu, iga päev</h2>
+      <p>Lihtne mehaanika, mida saab rakendada igal hommikul, igal pingelisel hetkel.</p>
+    </div>
+
+    <div class="how-steps">
+      <div class="step reveal">
+        <h3>Märka</h3>
+        <p>
+          Ole tähelepanelik oma ümbruse ja sisehääle suhtes. Kes vajab abi —
+          ka siis, kui ta seda ei küsi? Mida tunnen ma ise just praegu?
+        </p>
+      </div>
+      <div class="step reveal">
+        <h3>Küsi</h3>
+        <p>
+          "Kas ma saan aidata?" või "Kuidas me selle lahendame?".
+          Lihtne küsimus avab ukse, mille keegi muu ei oska avada.
+        </p>
+      </div>
+      <div class="step reveal">
+        <h3>Tee ära</h3>
+        <p>
+          Vähem muretsemist, rohkem lahendusi. Tegutsemine on mehe loomuses —
+          ja iga väike tegu loeb rohkem kui pikk monolõog.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORIES ============ -->
+<section id="lood" class="stories">
+  <div class="stories-inner">
+    <div class="stories-header">
+      <div class="section-label" style="justify-content: center;">
+        <span style="background: linear-gradient(90deg, transparent, var(--accent), transparent); width: 80px; height: 1px;"></span>
+        Mehed, kes ütlesid "Aitan!"
+      </div>
+      <h2>Üks otsus muutis kõik</h2>
+      <p>
+        Tõelised lood meestelt, kes lubasid endale, et täna märkavad,
+        küsivad ja teevad. Mitte üleöö — vaid samm-sammult.
+      </p>
+    </div>
+
+    <div class="stories-grid">
+
+      <article class="story span-7 reveal">
+        <span class="story-marker">Pereisa · Tartu</span>
+        <p class="story-quote">Mu poeg ütles esimest korda elus, et tunneb end mu kõrval ohutult. Ma nutsin autos.</p>
+        <p class="story-text">
+          Ma olin see isa, kes oli füüsiliselt kohal, aga emotsionaalselt teises maailmas.
+          Telefon käes, mõtted tööl. "Aitan!" ei õpetanud mulle midagi uut — see meenutas
+          mulle, kes ma tegelikult olla tahan. Esimene asi, mida muutsin: õhtusöögi
+          ajal panen telefoni teise tuppa. Pisike samm. Kuue kuuga muutus terve
+          meie pere keemia.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">MK</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Mart, 41</span>
+            <span class="story-meta-role">IT-projektijuht, kahe lapse isa</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-5 dark reveal">
+        <span class="story-marker">Sõbra päästmine</span>
+        <p class="story-quote">Ma ei teadnud, et üks küsimus võib päästa elu.</p>
+        <p class="story-text">
+          Andres oli mu vanim sõber. Ta naeratas alati. Ühel reede õhtul
+          nägin tema silmis midagi, mida ma varem polnud märganud — ja küsisin
+          otse: "Kuidas sul tegelikult on?" Ta vaikis kuus minutit. Siis ta
+          rääkis. Täna on ta elus. Ja mina olen muutunud meheks, kes küsib.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">PT</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Priit, 38</span>
+            <span class="story-meta-role">Ehitusjuht</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-4 stat-card reveal">
+        <div class="story-stat">87%</div>
+        <p class="story-stat-label">
+          meestest tunneb end pärast esimest "Aitan!" tegu
+          <strong style="color: var(--ink);">tugevamana</strong> kui enne.
+        </p>
+      </article>
+
+      <article class="story span-4 reveal">
+        <span class="story-marker">Vaimne tervis</span>
+        <p class="story-quote">Esimest korda 30 aasta jooksul ütlesin valjusti: ma ei ole okei.</p>
+        <p class="story-text">
+          Ma arvasin, et terapeudi juurde minemine on nõrkade jaoks. Manifestis seisis,
+          et tõeline julgus on olla haavatav. Lugesin seda kolm korda. Helistasin järgmisel
+          päeval. Sealt tuli minu uus elu.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">RL</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Rasmus, 34</span>
+            <span class="story-meta-role">Müügijuht</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-4 reveal">
+        <span class="story-marker">Naabriabi</span>
+        <p class="story-quote">Pakkusin trepikoja vanaprouale abi. Selgus, et ta polnud kuu aega kellegagi rääkinud.</p>
+        <p class="story-text">
+          Ühe poekoti kandmisest sai iganädalane teisipäeva tee-tund. Mina arvasin,
+          et aitan teda. Tegelikkuses aitas tema mind palju rohkem.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">JV</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Jaanus, 47</span>
+            <span class="story-meta-role">Logistik</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-8 accent reveal">
+        <span class="story-marker">Abielu päästmine</span>
+        <p class="story-quote">
+          Ma ei vajanud uut naist ega uut tööd. Ma vajasin uut endast.
+        </p>
+        <p class="story-text">
+          15 aastat abielu, kaks last, ilus maja — ja sügaval sees tühjus, mida ma ei
+          osanud nimetada. Ma süüdistasin oma naist, ülemust, ilma. "Aitan!" andis
+          mulle ühe lause, mis murdis midagi: <em>"Mees on kohal — mitte ainult
+          füüsiliselt, vaid emotsionaalselt."</em> Ma polnud kohal olnud aastaid.
+          Ma olin näidanud üles ainult siis, kui see oli mugav. Asjad ei muutunud üleöö.
+          Aga ühel hommikul tõusin, vaatasin oma naist ja küsisin: "Kuidas sa tegelikult oled?"
+          Ja siis kuulasin. Päriselt. Esimest korda kümne aasta jooksul.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">TS</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Tarvo, 44</span>
+            <span class="story-meta-role">Ettevõtja, Pärnu</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-4 reveal">
+        <span class="story-marker">Vendlus</span>
+        <p class="story-quote">Mu meeste WhatsApp-i grupp läks koomiksitelt päris vestlustele.</p>
+        <p class="story-text">
+          Mina alustasin. Saatsin lause: "Mul oli täna raske päev, palun küsige
+          minult homme, kuidas läks." Vastas neli sõpra. Sealt algas asi,
+          mida ma ei oleks osanud unistadagi.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">KR</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Karl, 31</span>
+            <span class="story-meta-role">Õpetaja</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-4 reveal">
+        <span class="story-marker">Eeskuju</span>
+        <p class="story-quote">Mu 8-aastane tütar ütles tüdruksõbrale: "Mu isa AITAB."</p>
+        <p class="story-text">
+          See oli kõige uhkem hetk minu elus. Mitte autoga, mitte palgaga,
+          mitte kalapüügiga. Ühe lihtsa tegusõnaga, mille ta minus märkas.
+        </p>
+        <div class="story-meta">
+          <div class="story-avatar">UH</div>
+          <div class="story-meta-info">
+            <span class="story-meta-name">Urmas, 39</span>
+            <span class="story-meta-role">Elektrik</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="story span-4 stat-card reveal">
+        <div class="story-stat">3 219</div>
+        <p class="story-stat-label">
+          meest on andnud oma sõna. Iga päev liitub umbes
+          <strong style="color: var(--ink);">26 uut</strong>.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="liitu" class="cta">
+  <div class="cta-inner">
+    <h2>Anna oma sõna<span class="bang">.</span></h2>
+    <p>
+      Liitudes lubad endale ja teistele, et täna märkad, küsid ja teed.
+      Saad kord nädalas lühikese kirja: üks tegu, üks meelespea, üks lugu.
+    </p>
+    <form class="pledge-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Tehtud ✓'; this.querySelector('button').disabled=true;">
+      <input type="email" required placeholder="sinu@e-post.ee" aria-label="E-posti aadress">
+      <button type="submit">Aitan!</button>
+    </form>
+    <p class="pledge-note">Saadame ainult seda, mis aitab. Lahkud millal soovid.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">AITAN<span class="bang">!</span></a>
+      <p>Liikumine meestele, kes valivad iga päev tegutsemise — endale, oma peresse, oma vendadesse, oma ühiskonnaga.</p>
+    </div>
+    <div>
+      <h5>Liikumine</h5>
+      <ul>
+        <li><a href="#manifest">Manifest</a></li>
+        <li><a href="#vaartused">Väärtused</a></li>
+        <li><a href="#kuidas">Kuidas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Tegutse</h5>
+      <ul>
+        <li><a href="#liitu">Anna sõna</a></li>
+        <li><a href="#">Korralda kohtumine</a></li>
+        <li><a href="#">Toeta</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Kontakt</h5>
+      <ul>
+        <li><a href="mailto:tere@aitan.ee">tere@aitan.ee</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Liikumine "Aitan!". Kõik õigused kuuluvad neile, kes tegutsevad.</span>
+    <span>Kui näed sõpra murdumas — ulata käsi.</span>
+  </div>
+</footer>
+
+<script>
+  // Reveal animations
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
