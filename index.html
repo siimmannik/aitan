@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -87,11 +87,203 @@
     nav ul { display: none; }
   }
 
+  /* ============ TARKUSE LIPP (marquee) ============ */
+  .marquee {
+    margin-top: 70px;
+    background: linear-gradient(90deg, #c9572c 0%, #e07a3f 50%, #c9572c 100%);
+    color: var(--paper);
+    overflow: hidden;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+  }
+  .marquee::before, .marquee::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0;
+    width: 80px; z-index: 2; pointer-events: none;
+  }
+  .marquee::before { left: 0; background: linear-gradient(90deg, #c9572c, transparent); }
+  .marquee::after  { right: 0; background: linear-gradient(-90deg, #c9572c, transparent); }
+  .marquee-track {
+    display: flex; gap: 60px;
+    padding: 16px 0;
+    animation: scroll-left 50s linear infinite;
+    width: max-content;
+  }
+  .marquee-track span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .marquee-track span::after {
+    content: '✦';
+    margin-left: 60px;
+    color: rgba(250,246,240,0.5);
+  }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ============ TARKUSEKAARDID ============ */
+  .wisdom {
+    padding: 110px 40px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(201,87,44,0.12), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(184,146,74,0.18), transparent 50%),
+      linear-gradient(180deg, #faf6f0, #f5efe6);
+    position: relative;
+  }
+  .wisdom::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px; height: 60px;
+    background: var(--accent);
+  }
+  .wisdom-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 70px;
+  }
+  .wisdom-eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+  .wisdom-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.4vw, 54px);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .wisdom-header h2 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .wisdom-grid {
+    max-width: 1280px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+  }
+  .wisdom-card {
+    background: var(--paper);
+    border-radius: 16px;
+    padding: 36px 28px 28px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 14px 40px -16px rgba(26,31,46,0.18),
+      0 4px 12px -6px rgba(26,31,46,0.1);
+    position: relative;
+    transition: transform .35s ease, box-shadow .35s ease;
+    text-align: center;
+    overflow: hidden;
+  }
+  .wisdom-card::before {
+    content: '"';
+    position: absolute;
+    top: -30px; left: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 160px;
+    color: rgba(201,87,44,0.16);
+    line-height: 1;
+    font-weight: 700;
+  }
+  .wisdom-card:nth-child(1) { transform: rotate(-1.5deg); }
+  .wisdom-card:nth-child(2) { transform: rotate(0.8deg); }
+  .wisdom-card:nth-child(3) { transform: rotate(-0.5deg); }
+  .wisdom-card:nth-child(4) { transform: rotate(1.2deg); }
+  .wisdom-card:nth-child(5) { transform: rotate(-1deg); }
+  .wisdom-card:nth-child(6) { transform: rotate(0.6deg); }
+  .wisdom-card:hover {
+    transform: rotate(0) translateY(-6px) scale(1.02);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 24px 50px -16px rgba(201,87,44,0.3),
+      0 8px 20px -6px rgba(26,31,46,0.15);
+  }
+  .wisdom-card.dark {
+    background: linear-gradient(160deg, #1a1f2e 0%, #2a2f3a 100%);
+    color: var(--paper);
+  }
+  .wisdom-card.dark::before { color: rgba(201,87,44,0.4); }
+  .wisdom-card.warm {
+    background: linear-gradient(160deg, #e07a3f 0%, #c9572c 100%);
+    color: var(--paper);
+  }
+  .wisdom-card.warm::before { color: rgba(250,246,240,0.25); }
+  .wisdom-card.gold {
+    background: linear-gradient(160deg, #d4a85e 0%, #b8924a 100%);
+    color: var(--ink);
+  }
+  .wisdom-card.gold::before { color: rgba(26,31,46,0.18); }
+
+  .wisdom-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.35;
+    margin-bottom: 24px;
+    position: relative; z-index: 2;
+  }
+  .wisdom-card.dark .wisdom-quote,
+  .wisdom-card.warm .wisdom-quote { color: var(--paper); }
+
+  .wisdom-author {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    position: relative; z-index: 2;
+    line-height: 1;
+  }
+  .wisdom-card.dark .wisdom-author { color: var(--gold); }
+  .wisdom-card.warm .wisdom-author { color: var(--paper); }
+  .wisdom-author::before {
+    content: '— ';
+  }
+  .wisdom-author small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+
+  .wisdom-cta {
+    text-align: center;
+    margin-top: 56px;
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--ink-soft);
+    transform: rotate(-1deg);
+  }
+  .wisdom-cta::before {
+    content: '↓ ';
+    color: var(--accent);
+  }
+
   /* ============ HERO ============ */
   .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - 130px);
     display: flex; flex-direction: column; justify-content: center;
-    padding: 140px 40px 80px;
+    padding: 80px 40px;
     position: relative;
     background:
       radial-gradient(ellipse 80% 60% at 70% 20%, rgba(201,87,44,0.08), transparent),
@@ -644,6 +836,25 @@
   <a href="#liitu" class="nav-cta">Liitu</a>
 </nav>
 
+<!-- ============ TARKUSE LIPP ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Tugevus pole müür — see on käsi.</span>
+    <span>Mees, kes räägib oma valust, päästab teise.</span>
+    <span>Iga päev valid sina, milline mees sa oled.</span>
+    <span>Vaikiv vendlus on valjuim hüüd.</span>
+    <span>Ära oota torme — õpi purjetama nendes.</span>
+    <span>Pisar on kohaloleku märk, mitte nõrkuse.</span>
+    <!-- duplikaat sujuva tsükli jaoks -->
+    <span>Tugevus pole müür — see on käsi.</span>
+    <span>Mees, kes räägib oma valust, päästab teise.</span>
+    <span>Iga päev valid sina, milline mees sa oled.</span>
+    <span>Vaikiv vendlus on valjuim hüüd.</span>
+    <span>Ära oota torme — õpi purjetama nendes.</span>
+    <span>Pisar on kohaloleku märk, mitte nõrkuse.</span>
+  </div>
+</div>
+
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-grid">
@@ -685,6 +896,50 @@
       </svg>
     </div>
   </div>
+</section>
+
+<!-- ============ TARKUSEKAARDID ============ -->
+<section class="wisdom">
+  <div class="wisdom-header">
+    <span class="wisdom-eyebrow">tarkuseterad teelt</span>
+    <h2>Mõned <em>laused</em>, mis on muutnud<br>tuhandeid mehi.</h2>
+  </div>
+
+  <div class="wisdom-grid">
+
+    <article class="wisdom-card reveal">
+      <p class="wisdom-quote">Tõeline jõud ei karju. See kuulab.</p>
+      <p class="wisdom-author">Tarmo, 47 <small>Aitan!-vend alates 2024</small></p>
+    </article>
+
+    <article class="wisdom-card dark reveal">
+      <p class="wisdom-quote">Sa ei pea olema kangelane. Pead ainult ütlema "aitan" — ja seda mõtlema.</p>
+      <p class="wisdom-author">Manifesti rida <small>Lk 1, lubadus 1</small></p>
+    </article>
+
+    <article class="wisdom-card reveal">
+      <p class="wisdom-quote">Käsi, mis aitab teist, on ka käsi, mis paraneb ise.</p>
+      <p class="wisdom-author">Vana eesti vanasõna <small>Uuesti avastatud</small></p>
+    </article>
+
+    <article class="wisdom-card warm reveal">
+      <p class="wisdom-quote">Mees ei kasva mugavusest. Ta kasvab valikust olla kohal.</p>
+      <p class="wisdom-author">Riiko M., treener <small>Aitan!-saadik</small></p>
+    </article>
+
+    <article class="wisdom-card reveal">
+      <p class="wisdom-quote">Kui sa ei suuda iseennast aidata, ei suuda sa aidata kedagi.</p>
+      <p class="wisdom-author">Dr. Ain Pärtel <small>Psühholoog</small></p>
+    </article>
+
+    <article class="wisdom-card gold reveal">
+      <p class="wisdom-quote">Vaikiv vendlus on valjuim hüüd, mida üksinda mees võib kuulda.</p>
+      <p class="wisdom-author">Karl J., 31 <small>Õpetaja, Tartu</small></p>
+    </article>
+
+  </div>
+
+  <p class="wisdom-cta">vaata, kust see kõik algas</p>
 </section>
 
 <!-- ============ MANIFEST ============ -->
