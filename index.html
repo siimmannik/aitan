@@ -668,6 +668,278 @@
     .how-steps { grid-template-columns: 1fr; gap: 24px; }
   }
 
+  /* ============ ASUTAJA ============ */
+  .founder {
+    padding: 120px 40px;
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(201,87,44,0.18), transparent 60%),
+      linear-gradient(180deg, #f5efe6, #ebe3d5);
+    position: relative;
+  }
+  .founder-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .founder-inner { grid-template-columns: 1fr; gap: 50px; }
+  }
+
+  .founder-photo {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .founder-photo > img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
+    background: var(--paper);
+    /* Tikerpalu-stiilis värviline gradientring */
+    padding: 6px;
+    background:
+      conic-gradient(from 45deg,
+        #c9572c 0%, #e07a3f 25%, #b8924a 50%,
+        #c9572c 75%, #e07a3f 100%);
+    box-shadow: 0 30px 60px -20px rgba(26,31,46,0.3);
+  }
+  .founder-photo .inner-mask {
+    position: absolute; inset: 6px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .founder-photo .inner-mask img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+  .founder-badge-asutaja {
+    position: absolute;
+    top: 4%; right: -4%;
+    background: var(--accent);
+    color: var(--paper);
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 14px 18px;
+    border-radius: 14px;
+    transform: rotate(8deg);
+    box-shadow: 0 12px 28px -8px rgba(201,87,44,0.6);
+    border: 3px solid var(--paper);
+    line-height: 1;
+    z-index: 3;
+  }
+  .founder-badge-asutaja::before { content: '★ '; }
+  .founder-stats-floating {
+    position: absolute;
+    bottom: -10px; left: -20px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 18px;
+    padding: 18px 22px;
+    display: flex; gap: 22px;
+    box-shadow: 0 16px 40px -12px rgba(26,31,46,0.5);
+    z-index: 3;
+    border: 3px solid var(--paper);
+  }
+  .founder-stats-floating .stat {
+    text-align: center;
+    line-height: 1;
+  }
+  .founder-stats-floating .stat strong {
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .founder-stats-floating .stat span {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(250,246,240,0.7);
+  }
+  .founder-stats-floating .stat + .stat {
+    border-left: 1px solid rgba(250,246,240,0.15);
+    padding-left: 22px;
+  }
+
+  .founder-bio { position: relative; }
+  .founder-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .founder-handle {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .founder-handle::before { content: '@'; opacity: 0.6; }
+  .founder-bio h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .founder-followers {
+    display: flex; gap: 24px;
+    margin: 16px 0 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .founder-followers .item {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .founder-followers .item strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .founder-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 24px;
+    line-height: 1.35;
+    border-left: 4px solid var(--accent);
+    padding-left: 16px;
+  }
+  .founder-meta {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+  .founder-meta li {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .founder-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-bottom: 24px;
+    padding: 8px 14px;
+    background: rgba(201,87,44,0.08);
+    border-radius: 8px;
+    border: 1px dashed rgba(201,87,44,0.3);
+  }
+  .founder-link::before { content: '🔗 '; }
+  .founder-cta-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .founder-cta-row .btn {
+    padding: 14px 22px; font-size: 13px;
+  }
+
+  /* Story sektsioon */
+  .founder-story-wrap {
+    max-width: 900px;
+    margin: 100px auto 0;
+    padding: 50px 50px 50px 80px;
+    background: var(--paper);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px -20px rgba(26,31,46,0.18);
+    position: relative;
+  }
+  .founder-story-wrap::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: var(--accent);
+    top: 0; left: 24px;
+    line-height: 1;
+    opacity: 0.18;
+  }
+  .founder-story-wrap h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+  .founder-story-wrap p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .founder-story-wrap p strong { color: var(--ink); }
+  .founder-story-wrap p em {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+    font-style: italic;
+    font-size: 19px;
+  }
+  .founder-signature {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .founder-signature .sig-script {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--accent);
+    transform: rotate(-2deg);
+  }
+  .founder-signature .sig-meta {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  @media (max-width: 700px) {
+    .founder-story-wrap { padding: 40px 24px; }
+  }
+
+  /* Press strip */
+  .founder-press {
+    margin-top: 60px;
+    text-align: center;
+  }
+  .founder-press-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .founder-press-logos {
+    display: flex; gap: 36px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .founder-press-logos span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    opacity: 0.5;
+    letter-spacing: 0.02em;
+  }
+
   /* ============ CTA ============ */
   .cta {
     padding: 160px 40px;
@@ -953,6 +1225,7 @@
     <li><a href="#vaartused">Väärtused</a></li>
     <li><a href="#kuidas">Kuidas</a></li>
     <li><a href="#lood">Lood</a></li>
+    <li><a href="#asutaja">Asutaja</a></li>
   </ul>
   <a href="#liitu" class="nav-cta">Liitu</a>
 </nav>
@@ -1384,6 +1657,79 @@
         </p>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ============ ASUTAJA ============ -->
+<section id="asutaja" class="founder">
+  <div class="founder-inner">
+
+    <!-- Foto stats-elementidega -->
+    <div class="founder-photo">
+      <div class="inner-mask">
+        <img src="img/asutaja.jpg" alt="Markus Vendelin — Aitan! asutaja">
+      </div>
+      <div class="founder-badge-asutaja">asutaja</div>
+      <div class="founder-stats-floating">
+        <div class="stat"><strong>5 247</strong><span>Meest</span></div>
+        <div class="stat"><strong>47</strong><span>Päeva</span></div>
+        <div class="stat"><strong>19</strong><span>Riiki</span></div>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="founder-bio">
+      <span class="founder-eyebrow">Aitan! liikumise asutaja</span>
+      <h2>Markus<br>Vendelin</h2>
+      <div class="founder-handle">markusvendelin</div>
+      <div class="founder-followers">
+        <span class="item"><strong>14,2K</strong> jälgijat</span>
+        <span class="item"><strong>891</strong> postitust</span>
+        <span class="item"><strong>5 247</strong> vendlust</span>
+      </div>
+      <p class="founder-tagline">"Mul oli kõik. Aga ma polnud mees. 47 päevaga muutus kõik. Sa saad sama."</p>
+      <ul class="founder-meta">
+        <li>🦁 Mees, kes õpetab mehi olema mehed</li>
+        <li>🔥 5 247 venda 47-päevases Aitan!-programmis</li>
+        <li>💪 Vaim · Keha · Kohalolek</li>
+        <li>📍 Tallinn ⇄ Dubai ⇄ Tartu</li>
+        <li>🎙 Podcastis "Mehe Hommik" igal teisipäeval</li>
+        <li>📩 Saada DM "AITAN" — saadan sulle alustusplaani</li>
+      </ul>
+      <a href="#" class="founder-link">linktr.ee/markusvendelin</a>
+      <div class="founder-cta-row">
+        <a href="#liitu" class="btn btn-primary">Saada DM "AITAN"</a>
+        <a href="#" class="btn btn-secondary">Vaata 47-päevast plaani</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Asutaja lugu -->
+  <div class="founder-story-wrap">
+    <h3>Minu lugu — minutiga</h3>
+    <p><strong>2019.</strong> Tippjuht ühes Tallinna IT-ettevõttes. BMW M3. Maja Pirital. Naine, kaks last. 32-aastane. Numbrite mõttes — võitnud.</p>
+    <p>Aga peeglisse vaadates ma ei näinud meest. Nägin sinna juhuslikult sattunud poissi, kes oli aastaid teisi imiteerinud, ilma et oleks ise teadnud, kes ta on.</p>
+    <p>Ühel reede õhtul jõudis kõik järele. <em>Paanikahoog autos Liivalaia tänaval. Käed nii värisesid, et ma ei saanud rooli hoida.</em> Helistasin sõbrale, kes mind vana sauna juurde sõidutas. Seal me rääkisime kaheksa tundi. Esimest korda elus ma päriselt rääkisin.</p>
+    <p>Sealt ühest ööst sündis Aitan!. Kui mina sain päästa, said ka teised. Ja kui kümme meest võtsid mu sõnad omaks, sai sellest sada. Ja siis tuhat. <strong>Täna on meid 5 247 üle 19 riigi.</strong></p>
+    <p>Ma ei luba sulle, et 47 päeva muudavad kõik. Ma luban sulle, et selle aja lõpuks <em>vaatad sa peeglisse — ja näed meest.</em></p>
+    <div class="founder-signature">
+      <span class="sig-script">— Markus</span>
+      <span class="sig-meta">Aitan! asutaja · est. 2024</span>
+    </div>
+  </div>
+
+  <!-- Press strip -->
+  <div class="founder-press">
+    <div class="founder-press-label">Kelle juures olen olnud</div>
+    <div class="founder-press-logos">
+      <span>Postimees</span>
+      <span>Eesti Ekspress</span>
+      <span>Geenius</span>
+      <span>Edasi.org</span>
+      <span>Anu Saagimi Pod</span>
+      <span>Hommik Anuga</span>
     </div>
   </div>
 </section>
