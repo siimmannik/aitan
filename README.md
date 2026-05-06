@@ -6,7 +6,9 @@ Liikumine "Aitan!" — koduleht.
 
 ## Struktuur
 
-- `index.html` — kogu leht koos CSS-i ja JS-iga ühes failis. Pole eraldi varasid (assets), pole build-protsessi.
+- `index.html` — kogu leht koos CSS-i ja JS-iga ühes failis.
+- `img/vennad.jpg` — Adobe Stock 641765403, litsentsitud
+- `img/vendlus.jpg` — Adobe Stock 772134718, litsentsitud
 
 ## Lokaalne eelvaade
 

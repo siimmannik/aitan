@@ -390,6 +390,82 @@
   .intro p:last-child { margin-bottom: 0; }
   .intro p strong { color: var(--paper); font-weight: 700; }
 
+  /* ============ FOTO-VAHEPALA ============ */
+  .photo-break {
+    position: relative;
+    height: 70vh;
+    min-height: 460px;
+    max-height: 720px;
+    background-image:
+      linear-gradient(180deg, rgba(26,31,46,0.65) 0%, rgba(26,31,46,0.35) 40%, rgba(26,31,46,0.85) 100%),
+      url('img/vennad.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    color: var(--paper);
+    padding: 60px 40px;
+  }
+  @media (max-width: 768px) {
+    .photo-break { background-attachment: scroll; height: auto; min-height: 480px; }
+  }
+  .photo-break-inner {
+    max-width: 880px;
+    position: relative; z-index: 2;
+  }
+  .photo-break .marker {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+  .photo-break h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.005em;
+  }
+  .photo-break h3 em {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .photo-break p {
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+    color: rgba(250,246,240,0.85);
+  }
+  .photo-break .photo-credit {
+    position: absolute;
+    bottom: 16px; right: 20px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.4);
+  }
+
+  /* Foto-vahepala 2 — väiksem, vendluskäte motiiv */
+  .photo-strip {
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .photo-strip-img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    object-position: center 60%;
+    display: block;
+    filter: grayscale(0.2) contrast(1.05);
+  }
+
   /* ============ VALUES ============ */
   .values {
     padding: 140px 40px;
@@ -962,6 +1038,16 @@
   </div>
 </section>
 
+<!-- ============ FOTO-VAHEPALA ============ -->
+<section class="photo-break">
+  <div class="photo-break-inner">
+    <span class="marker">üksinda ei jaksa keegi</span>
+    <h3>Need on mehed, kes on otsustanud, et <em>nemad on need</em>, kes ulatavad esimesena käe.</h3>
+    <p>Reedeti kohtuvad nad pubis, hommikuti jooksevad metsas, õhtuti helistavad tuttavale, kelle hääles on midagi paigast ära. Mitte sangarid. Lihtsalt mehed, kes valisid kohaloleku.</p>
+  </div>
+  <span class="photo-credit">Aitan!-vendade kohtumine · Tartumaa, 2025</span>
+</section>
+
 <!-- ============ VALUES ============ -->
 <section id="vaartused" class="values">
   <div class="values-header">
@@ -1108,6 +1194,11 @@
     </div>
   </div>
 </section>
+
+<!-- ============ FOTORIBA ============ -->
+<div class="photo-strip">
+  <img class="photo-strip-img" src="img/vendlus.jpg" alt="Kaks meest kohtumas">
+</div>
 
 <!-- ============ STORIES ============ -->
 <section id="lood" class="stories">
